@@ -6,7 +6,7 @@
 /*   By: engooh <erickngooh.1@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:57:30 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/14 17:09:16 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/01/17 18:51:21 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
-long		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);

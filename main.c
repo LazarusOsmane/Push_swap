@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:40:33 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/17 01:36:19 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/01/17 18:21:07 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -28,14 +28,14 @@ int	main(int ac, char **av)
 		    stack_a = stack_a->next;
 	  }
 	  printf("\n\n\n");
-	 ft_rotate(&p, "ra\n");
-	 /*printf("\n\n\n");
-	  while (stack_b)
+		p = ft_reverse(&p, "ra");
+		/*printf("\n\n\n");
+		while (stack_b)
 	  {
 		    printf("%d\n", stack_b->content);
 		    stack_b = stack_b->next;
 	  }*/
-	 printf("\n\n\n");
+		printf("\n\n\n");
 	  while (p)
 	  {
 		    printf("%d\n", p->content);

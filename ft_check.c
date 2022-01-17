@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:43:17 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/11 20:22:54 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:24:00 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,7 +14,7 @@
 int	ft_check(int ac, char **av)
 {
 	int		i;
-	long	j;
+	long		j;
 
 	if (ac < 2)
 		return (1);

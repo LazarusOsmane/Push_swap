@@ -1,4 +1,4 @@
-SRC = ft_check.c ft_stack.c ft_rules.c main.c
+SRC = ft_stack.c ft_rules.c main.c
 OBJ = ${SRC:.c=.o}
 CFLAG = -Wall -Werror -Wextra
 CC = gcc

@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/17 19:00:04 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/18 14:21:00 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -80,27 +80,27 @@ t_stack	*ft_reverse(t_stack **stack, char *flag)
 
 void	ft_repeat_rules(t_stack **stack_a, t_stack **stack_b, char *flag)
 {
-	if (!ft_strcmp(flag, "ss") && ft_swap(stack_a, "")
-		&& ft_swap(stack_b, "ss"))
+	if (!ft_strcmp(flag, "ss\n") && ft_swap(stack_a, "")
+		&& ft_swap(stack_b, "ss\n"))
 		return ;
-	if (!ft_strcmp(flag, "rr") && ft_rotate(stack_a, "")
-		&& ft_rotate(stack_b, "rr"))
+	else if (!ft_strcmp(flag, "rr\n") && ft_rotate(stack_a, "")
+		&& ft_rotate(stack_b, "rr\n"))
 		return ;
-	else if (!ft_strcmp(flag, "rra"))
+	else if (!ft_strcmp(flag, "rra\n"))
 	{
 		*stack_a = ft_reverse(stack_a, "");
-		ft_rotate(stack_a, "rra");
+		ft_rotate(stack_a, "rra\n");
 	}
-	else if (!ft_strcmp(flag, "rrb"))
+	else if (!ft_strcmp(flag, "rrb\n"))
 	{
 		*stack_b = ft_reverse(stack_b, "");
-		ft_rotate(stack_b, "rrb");
+		ft_rotate(stack_b, "rrb\n");
 	}
-	else if (!ft_strcmp(flag, "rrr"))
+	else if (!ft_strcmp(flag, "rrr\n"))
 	{
 		*stack_a = ft_reverse(stack_a, "");
 		ft_rotate(stack_a, "");
 		*stack_b = ft_reverse(stack_b, "");
-		ft_rotate(stack_b, "rrr");
+		ft_rotate(stack_b, "rrr\n");
 	}
 }

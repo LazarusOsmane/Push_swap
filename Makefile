@@ -1,6 +1,6 @@
-SRC = ft_stack.c ft_rules.c main.c
+SRC = ft_stack.c ft_rules.c ft_algo.c  main.c
 OBJ = ${SRC:.c=.o}
-CFLAG = -Wall -Werror -Wextra
+CFLAG = -g3 -Wall -Werror -Wextra
 CC = gcc
 LIBFT = ./libft/libft.a
 

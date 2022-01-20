@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:30:53 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/17 19:02:03 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/20 05:12:24 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void		ft_push(t_stack **push, t_stack **recv, char *flag);
 int			ft_swap(t_stack **stack, char *flag);
 int			ft_rotate(t_stack **stack, char *flag);
 void		ft_repeat_rules(t_stack **stack_a, t_stack **stack_b, char *flag);
+void		ft_sort(t_stack **stack, int stacklen);
+int	ft_mediane_mediane(t_stack *stack, int **tabs, int size, int i);
 #endif 

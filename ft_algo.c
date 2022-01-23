@@ -6,12 +6,12 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:30:38 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/20 05:12:38 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/23 18:02:25 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_sort(t_stack **stack, int stacklen)
+/*void	ft_sort(t_stack **stack, int stacklen)
 {
 	ft_mediane_mediane(*stack, NULL, stacklen / 5, -1);
 }
@@ -44,4 +44,4 @@ int	ft_mediane_mediane(t_stack *stack, int **tabs, int size, int i)
 	}
 	if (size)
 		ft_mediane_mediane(stack->next, tabs, size - 1, -1);
-}
+}*/

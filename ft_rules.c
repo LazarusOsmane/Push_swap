@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/18 14:21:00 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/24 00:38:07 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -48,7 +48,7 @@ int	ft_rotate(t_stack **stack, char *flag)
 		return (1);
 	temp = *stack;
 	*stack = (*stack)->next;
-	ft_stacklast(*stack)->next = temp;
+	ft_stacklast(*stack, *stack)->next = temp;
 	temp->next = NULL;
 	ft_putstr_fd(flag, 1);
 	return (1);

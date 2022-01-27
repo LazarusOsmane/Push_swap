@@ -6,35 +6,10 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:26:14 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/24 00:41:37 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/01/26 12:59:45 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-int	ft_check(int ac, char **av)
-{
-	int		i;
-	long	j;
-
-	if (ac < 2)
-		return (1);
-	i = 0;
-	while (++i < ac)
-	{
-		j = -1;
-		while (av[i][++j])
-			if (!ft_isdigit(av[i][j]) && av[i][j] != '-')
-				return (write(2, "Error\n", 6));
-		j = i;
-		while (++j < ac)
-			if (!ft_strcmp(av[i], av[j]))
-				return (write(2, "Error\n", 6));
-		j = ft_atoi(av[i]);
-		if (j < INT_MIN || j > INT_MAX)
-			return (write(2, "Error\n", 6));
-	}
-	return (0);
-}
 
 t_stack	*ft_stack_new(int content)
 {
@@ -49,11 +24,25 @@ t_stack	*ft_stack_new(int content)
 	return (p);
 }
 
+t_stack	*ft_stacklast(t_stack *stack, t_stack *temp)
+{
+	if (stack && (stack->next) != temp)
+		return (ft_stacklast(stack->next, temp));
+	return (stack);
+}
+
 void ft_stack_add_back(t_stack **alst, t_stack *new, t_stack *temp)
 {
-	  if (*alst && ((uintptr_t)(*alst)->next) != (uintptr_t)temp)
+	  if (!(*alst))
+	  {
+		    new->next = new;
+		    new->prev = new;
+		    *alst = new;
+		    return ;
+	  }
+	  if (*alst && (*alst)->next != temp)
 		    ft_stack_add_back(&((*alst)->next), new, temp);
-	  if (*alst && ((uintptr_t)(*alst)->next) == (uintptr_t)temp)
+	  if (*alst && (*alst)->next == temp)
 	  {
 		    temp->prev = new;
 		    (*alst)->next = new;
@@ -66,18 +55,19 @@ void	ft_stack_add_front(t_stack **alst, t_stack *new)
 {
 	  t_stack	*temp;
 
-	  temp = ft_stacklast(*alst, *alst); 
+	  if (!(*alst))
+	  {
+		    new->next = new;
+		    new->prev = new;
+		    *alst = new;
+		    return ;
+	  }
+	  temp = (*alst)->prev; 
 	  new->next = *alst;
+	  (*alst)->prev = new;
 	  new->prev = temp;
 	  temp->next = new;
 	  *alst = new;
-}
-
-t_stack	*ft_stacklast(t_stack *stack, t_stack *temp)
-{
-	if (stack && (uintptr_t)(stack->next) != (uintptr_t)(temp))
-		return (ft_stacklast(stack->next, temp));
-	return (stack);
 }
 
 t_stack	*ft_init_stack(int ac, char **av)

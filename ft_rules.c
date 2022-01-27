@@ -6,101 +6,90 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/24 00:38:07 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/01/25 20:47:58 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 void	ft_push(t_stack **push, t_stack **recv, char *flag)
 {
-	t_stack	*swap;
+	  t_stack	*swap;
 
-	if (!(*push))
-		return ;
-	swap = *push;
-	*push = (*push)->next;
-	swap->next = NULL;
-	if (*recv)
-		swap->next = *recv;
-	*recv = swap;
-	ft_putstr_fd(flag, 1);
+	  if (!(*push))
+		    return ;
+	  swap = *push;
+	  if (*push == (*push)->next)
+		    *push = NULL;
+	  else
+	  {
+		    (*push)->prev->next = (*push)->next;
+		    (*push)->next->prev = (*push)->prev;
+		    *push = (*push)->next;
+	  }
+	  if (*recv)
+		    ft_stack_add_front(recv, swap);
+	  else 
+	  {
+		    swap->next = swap;
+		    swap->prev = swap;
+		    *recv = swap;
+	  }
+	  ft_putstr_fd(flag, 1);
 }
 
-int	ft_swap(t_stack **stack, char *flag)
+void ft_swap(t_stack **stack, char *flag)
 {
-	t_stack	*temp;
+	  t_stack	*temp;
 
-	if (!((*stack)->next))
-		return (1);
-	temp = *stack;
-	*stack = (*stack)->next;
-	temp->next = (*stack)->next;
-	(*stack)->next = temp;
-	ft_putstr_fd(flag, 1);
-	return (1);
+	  if (*stack == (*stack)->next)
+		    return ;
+	  if (*stack == (*stack)->next->next)
+		    return (ft_rotate(stack, flag));
+	  temp = *stack;
+	  *stack = (*stack)->next;
+	  (*stack)->prev = temp->prev;
+	  (*stack)->prev->next = *stack;
+	  temp->next = (*stack)->next;
+	  (*stack)->next->prev = temp;
+	  temp->prev = *stack;
+	  (*stack)->next = temp;
+	  ft_putstr_fd(flag, 1);
+	  return ;
 }
 
-int	ft_rotate(t_stack **stack, char *flag)
+void ft_rotate(t_stack **stack, char *flag)
 {
-	t_stack	*temp;
-
-	if (!(*stack)->next)
-		return (1);
-	temp = *stack;
-	*stack = (*stack)->next;
-	ft_stacklast(*stack, *stack)->next = temp;
-	temp->next = NULL;
-	ft_putstr_fd(flag, 1);
-	return (1);
+	  if (!(*stack)->next)
+		    return ;
+	  *stack = (*stack)->next;
+	  ft_putstr_fd(flag, 1);
+	  return ;
 }
 
-t_stack	*ft_reverse(t_stack **stack, char *flag)
+void	ft_reverse(t_stack **stack, char *flag)
 {
-	t_stack	*new;
-	t_stack	*p;
-
-	new = NULL;
-	if (*stack && (*stack)->next)
-		new = ft_reverse(&((*stack)->next), flag);
-	if (!new)
-		new = &(**stack);
-	else
-	{
-		p = new;
-		while (new->next)
-			new = new->next;
-		new->next = *stack;
-		new->next->next = NULL;
-		new = p;
-	}
-	if (!(new->next))
-		ft_putstr_fd(flag, 1);
-	return (new);
+	  if (*stack == (*stack)->next)
+		    return ;
+	  *stack = (*stack)->prev;
+	  ft_putstr_fd(flag, 1);
+	  return ;
 }
 
-void	ft_repeat_rules(t_stack **stack_a, t_stack **stack_b, char *flag)
+void ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
 {
-	if (!ft_strcmp(flag, "ss\n") && ft_swap(stack_a, "")
-		&& ft_swap(stack_b, "ss\n"))
-		return ;
-	else if (!ft_strcmp(flag, "rr\n") && ft_rotate(stack_a, "")
-		&& ft_rotate(stack_b, "rr\n"))
-		return ;
-	else if (!ft_strcmp(flag, "rra\n"))
-	{
-		*stack_a = ft_reverse(stack_a, "");
-		ft_rotate(stack_a, "rra\n");
-	}
-	else if (!ft_strcmp(flag, "rrb\n"))
-	{
-		*stack_b = ft_reverse(stack_b, "");
-		ft_rotate(stack_b, "rrb\n");
-	}
-	else if (!ft_strcmp(flag, "rrr\n"))
-	{
-		*stack_a = ft_reverse(stack_a, "");
-		ft_rotate(stack_a, "");
-		*stack_b = ft_reverse(stack_b, "");
-		ft_rotate(stack_b, "rrr\n");
-	}
+	  if (!ft_strcmp(flag, "ss"))
+	  {
+		    ft_swap(stack_a, "");
+		    ft_swap(stack_b, "ss");
+	  }
+	  else if (!ft_strcmp(flag, "rr"))
+	  {
+		    ft_rotate(stack_a, "");
+		    ft_rotate(stack_b, "rr");
+	  }
+	  else if (!ft_strcmp(flag, "rrr"))
+	  {
+		    ft_reverse(stack_a, "");
+		    ft_reverse(stack_b, "rrr");
+	  }
 }

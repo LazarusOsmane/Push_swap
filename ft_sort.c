@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 14:40:33 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/28 16:15:09 by engooh           ###   ########.fr       */
+/*   Created: 2022/01/28 09:55:37 by engooh            #+#    #+#             */
+/*   Updated: 2022/01/28 11:24:42 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+/*void	ft_little_sort(int ac, t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*stack_a;
+	int			i;
+	t_stack *temp;
 
-	stack_a = ft_init_stack(ac, av);
-	ft_mediane_mediane(ac, stack_a);
-	return (0);
-}
+	while (--ac > 3)
+		ft_push(stack_a,	 stack_b, "pa\n");
+	i = 0;
+	temp = (*stack_a)->prev;
+}*/

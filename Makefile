@@ -1,5 +1,5 @@
-SRC = ft_stack.c ft_rules.c ft_algo.c ft_check.c main.c
-OBJ = ${SRC:.c=.o}
+SRC = ft_stack.c ft_mediane.c ft_rules.c ft_algo.c ft_check.c main.c ft_sort.c
+OBJ = ${SRC:.c=.o} 
 CFLAG = -g3 -Wall -Werror -Wextra
 CC = gcc
 LIBFT = ./libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:26:14 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/28 10:32:18 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/29 23:31:12 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -32,7 +32,26 @@ t_stack	*ft_stacklast(t_stack *stack, t_stack *temp)
 	return (stack);
 }
 
-void	ft_stack_add_back(t_stack **alst, t_stack *new, t_stack *temp)
+int	ft_stacklen(t_stack *stack)
+{
+	  int		i;
+	  t_stack	*tmp;
+
+	  i = 0;
+	  tmp = stack->prev;
+	  while (stack && ++i && stack != tmp)
+		    stack = stack->next;
+	  return (i);
+}
+
+void ft_delstack(t_stack *stack, t_stack *tmp)
+{
+	  if (stack != tmp)
+		    ft_delstack(stack->next, tmp);
+	  free(stack);
+}
+
+/*void	ft_stack_add_back(t_stack **alst, t_stack *new, t_stack *temp)
 {
 	if (!(*alst))
 	{
@@ -50,7 +69,7 @@ void	ft_stack_add_back(t_stack **alst, t_stack *new, t_stack *temp)
 		new->prev = *alst;
 		new->next = temp;
 	}
-}
+}*/
 
 void	ft_stack_add_front(t_stack **alst, t_stack *new)
 {

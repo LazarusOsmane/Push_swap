@@ -6,33 +6,29 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:46:16 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/28 17:34:10 by engooh           ###   ########.fr       */
+/*   Updated: 2022/01/30 22:56:38 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	**ft_create_tabs(int ac, t_stack *stack, int size)
+int	**ft_create_tabs(int len, t_stack *stack, int size)
 {
 	int	i;
 	int	j;
 	int	**tabs;
 
-	if (ac < 4)
-		return (NULL);
-	if (!size)
-		size = 2;
 	tabs = malloc(sizeof(int *) * size);
 	if (!tabs)
 		return (NULL);
-	tabs[--size] = 0;
 	j = -1;
+	tabs[--size] = 0;
 	while (++j < size)
 	{
 		tabs[j] = malloc(sizeof(int) * 5);
 		if (!tabs[j])
 			return (NULL);
 		i = -1;
-		while (++i < 5 && --ac)
+		while (++i < 5 && len--)
 		{
 			tabs[j][i] = stack->content;
 			stack = stack->next;
@@ -41,44 +37,51 @@ int	**ft_create_tabs(int ac, t_stack *stack, int size)
 	return (tabs);
 }
 
-int ft_sort(int *tabs, int size)
+int ft_get_mediane(int *tabs, int i, int min, int max)
+{
+	  int	res;
+
+	  res = 0;
+	  while (++i < 2)
+	  {
+		    if (max > tabs[i + 1])
+				max = i;
+		    if (min < tabs[i + 1])
+				min = i;
+	  }
+	  i = -1;
+	  while (++i < 2)
+		    if (i != min && i != max)
+				res = i;
+	  return (tabs[res]);
+}
+
+int ft_quicksort(int *tabs, int end)
+{
+	  int end;
+
+	  end = size;
+	  if (size > 1)
+		    ft_quicksort(tabs, size)
+}
+
+int ft_mediane_mediane(int size, t_stack *stack)
 {
 	int	i;
 	int	j;
-	int	swp;
-
-	i = 0;
-	while (i < size)
-	{
-		j = i;
-		while (tabs[i] > tabs[i])
-	}
-}
-
-
-int	ft_quicksort(int	*av)
-{
-	
-}
-
-int ft_mediane_mediane(int ac, t_stack *stack)
-{
-	int	i;
-	int	j;	
 	int	**tabs;
 
-	tabs = ft_create_tabs(ac, stack, ((ac - 1) / 5) + 2);
+	tabs = ft_create_tabs(size, stack, ((size) / 5) + 2);
 	if (!tabs)
 		return (0);
-	i = -1;
+	i = -1;	
 	while (tabs[++i] != 0)
 	{	
-		j = -1; 
-		while (++j < 5 && --ac)
-		{
-			printf("%d\n", tabs[i][j]);
-		}
+		j = 0; 
+		while (++j < 5 && size--)
+			  j++;
+		free(tabs[i]);
 	}
-	
+	free(tabs);
 	return (0);
 }

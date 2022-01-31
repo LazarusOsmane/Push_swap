@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:46:16 by engooh            #+#    #+#             */
-/*   Updated: 2022/01/30 22:56:38 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/01/31 16:25:56 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -37,32 +37,51 @@ int	**ft_create_tabs(int len, t_stack *stack, int size)
 	return (tabs);
 }
 
-int ft_get_mediane(int *tabs, int i, int min, int max)
+int	ft_get_mediane(int *tabs, int size, int i)
 {
-	  int	res;
+	int min;
+	int max;
+	int tab_index[3];
 
-	  res = 0;
-	  while (++i < 2)
-	  {
-		    if (max > tabs[i + 1])
-				max = i;
-		    if (min < tabs[i + 1])
-				min = i;
-	  }
-	  i = -1;
-	  while (++i < 2)
-		    if (i != min && i != max)
-				res = i;
-	  return (tabs[res]);
+	if (size < 5)
+		return (size);
+	min = 0;
+	max = 0;
+	tab_index[0] = 0;
+	tab_index[1] = size / 2;
+	tab_index[2] = size - 1;
+	while (++i < 3)
+	{
+			if (tabs[min] > tabs[tab_index[i]])
+				min = tab_index[i];
+			if (tabs[max] < tabs[tab_index[i]])
+				max = tab_index[i];
+	}
+	i = -1; 
+	while (++i < 3)
+		if (tabs[tab_index[i]] != tabs[min] && tabs[tab_index[i]] != tabs[max])
+			return(tab_index[i]);
+	return (-1);
 }
 
-int ft_quicksort(int *tabs, int end)
+int ft_quicksort(int *tabs, int size)
 {
-	  int end;
+	int	i;
+	int swp;
+	int	piv;
 
-	  end = size;
-	  if (size > 1)
-		    ft_quicksort(tabs, size)
+	i = 0;
+	piv = ft_get_mediane(tabs, size, 0);
+	while (++i < size)
+		if (tabs[piv] < tabs[i] && i < piv)
+		{
+			swp = tabs[i];
+			tabs[i] = tabs[piv];
+			tabs[piv] = swp;
+		}
+	if (end > 1)
+		return(ft_quicksort(tabs + 0, piv - 1) + ft_quicksort(tabs + piv, size - piv));
+	return (1);
 }
 
 int ft_mediane_mediane(int size, t_stack *stack)
@@ -74,12 +93,13 @@ int ft_mediane_mediane(int size, t_stack *stack)
 	tabs = ft_create_tabs(size, stack, ((size) / 5) + 2);
 	if (!tabs)
 		return (0);
+	ft_quicksort(tabs[0], size);
 	i = -1;	
 	while (tabs[++i] != 0)
 	{	
 		j = 0; 
 		while (++j < 5 && size--)
-			  j++;
+			j++;
 		free(tabs[i]);
 	}
 	free(tabs);

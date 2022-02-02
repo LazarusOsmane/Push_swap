@@ -6,63 +6,73 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:46:16 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/01 18:53:23 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/02 16:49:12 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 int ft_mediane(int *tabs, int start, int mil, int end)
 {
+	int med;
+
 	if (tabs[start] < tabs[mil] && tabs[start] > tabs[end])
-		return (start);
+		med = start;
 	else if (tabs[start] > tabs[mil] && tabs[start] < tabs[end])
-		return (start);
+		med = start;
 	else if (tabs[end] < tabs[mil] && tabs[end] > tabs[start])
-		return (end);
+		med = end;
 	else if (tabs[end] > tabs[mil] && tabs[end] < tabs[start])
-		return (end);
+		med = end;
 	else if (tabs[mil] < tabs[end] && tabs[mil] > tabs[start])
-		return (mil);
+		med = mil;
 	else if (tabs[mil] > tabs[end] && tabs[mil] < tabs[start])
-		return (mil);
-	return (end);
+		med = mil;
+	if (med != mil)
+	{
+		end = tabs[med];
+		tabs[med] = tabs[mil];
+		tabs[mil] = end;
+	}
+	return (mil);
 }
 
-int *ft_quicksort(int *tabs, int size)
+int	ft_quicksort(int **tabs, int start, int end, int count)
 {
 	int med;
-//	int max;
+	int piv;
 	int swp;
 	int i;
 	int j;
 
-	med = ft_mediane(tabs, 0, (size -1) / 2, size - 1);
-	//printf("%d", tabs[med]);
-	i = -1;
-	j = --size;
-	while (++i < j)
+	printf("start = %d  ", tabs[0][start]);
+	j = end;
+	i = start;
+	med = ft_mediane(tabs[0], start, end / 2, end);
+	if (start)
+	piv = tabs[0][med];
+	while (i < j)
 	{
-		while (tabs[i] < tabs[med] && i < med)
+		while (tabs[0][i] < piv)
 			i++;
-		while (tabs[j] > tabs[med] && j > med)
-			--j;
-		if (tabs[i] > tabs[j] && (i >= med))
-		{
-			if (tabs[i] == tabs[med])
-				med = i;
-			else if (tabs[j] == tabs[med])
-				med = j;
-			swp = tabs[j];
-			tabs[j] = tabs[i];
-			tabs[i] = swp;
+		while (tabs[0][j] > piv)
 			j--;
-			i++;
+		if (tabs[0][i] > tabs[0][j])
+		{
+			swp = tabs[0][j];
+			tabs[0][j] = tabs[0][i];
+			tabs[0][i] = swp;
 		}
 	}
-	i = -1; 
-	while (++i < size)
-		printf(" %d ", tabs[i]);
-	return (tabs);
+	printf("med == %d piv == %d\n", med, piv);
+	i = start; 
+	while (i <= end)
+		printf(" %d ", tabs[0][i++]);
+	printf("\n\n");
+	if (end > start && count >= 1)
+		ft_quicksort(tabs, 0, med, count + 1);
+	if (end > start && count <= 1)
+		ft_quicksort(tabs, med + 1, end, count - 1);
+	return (end);
 }
 
 int ft_mediane_mediane(int size, t_stack *stack)
@@ -79,6 +89,10 @@ int ft_mediane_mediane(int size, t_stack *stack)
 		stack = stack->prev;
 		tabs[size] = stack->content;
 	}
-	tabs = ft_quicksort(tabs, i);
+	ft_quicksort(&tabs, 0, i - 1, 1);
+	size = i;
+	i = -1;
+	while (++i < size)
+		printf("%d ", tabs[i]);
 	return (0);
 }

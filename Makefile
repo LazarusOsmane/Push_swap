@@ -1,4 +1,4 @@
-SRC = ft_stack.c ft_stack_2.c ft_mediane.c ft_rules.c ft_algo.c ft_check.c main.c ft_sort.c
+SRC = ft_big_sort.c ft_arbres.c ft_stack.c ft_stack_2.c ft_mediane.c ft_rules.c ft_algo.c ft_check.c main.c ft_sort.c
 OBJ = ${SRC:.c=.o} 
 CFLAG = -g3 -Wall -Werror -Wextra
 CC = gcc

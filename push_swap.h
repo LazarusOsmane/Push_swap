@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:30:53 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/09 14:48:22 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/09 19:05:22 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void		ft_push_swap(int ac, char **av);
 int			*ft_get_stack_info(int size, t_stack *stack);
 void		ft_little_sort(t_stack **stack_a, t_stack **stack_b, int size);
 void		ft_sort_five(t_stack **stack_a, t_stack **stack_b);
+t_stack	*ft_init_stack(int ac, char **av);
 int			ft_is_sort(int ac, char **av);
 int			ft_check(int ac, char **av);
+void ft_pres_sort(t_stack **stack_a, t_stack **stack_b);
 
 void		reind(t_stack *stack);
 int			ft_stacklen(t_stack *stack);
@@ -55,8 +57,7 @@ t_stack	*ind(t_stack*stack, int index);
 t_stack	*ft_stacklast(t_stack *stack, t_stack *temp);
 t_stack	*ft_stack_new(int content, int index);
 t_stack	*ft_init_stack(int ac, char **av);
-void		ft_position_theorique(t_arbre **arb);
-	
+void		ft_position_theorique(t_arbre **arb);	
 void	ft_init_arbre(t_stack *stack, t_arbre **arb);
 void	ft_delarbre(t_arbre *arb);
 void	ft_addnode(t_arbre **arb, t_arbre *new);

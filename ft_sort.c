@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 09:55:37 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/07 16:23:44 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/10 14:11:58 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -15,7 +15,7 @@ void	ft_sort_tree(t_stack **stack)
 {
 	int	*tab;
 
-	tab = ft_get_stack_info(3, *stack);
+	tab = ft_get_stack_info(3, *stack, 1);
 	if (tab[1] == ind(*stack, 2)->content && tab[0] == ind(*stack, 3)->content)
 	{
 		ft_rotate(stack, "ra\n");
@@ -46,7 +46,7 @@ void ft_push_min_nbr(t_stack **stack_a, t_stack **stack_b, int len)
 
 	i = 0;
 	temp = *stack_a;
-	tab = ft_get_stack_info(5, *stack_a);
+	tab = ft_get_stack_info(5, *stack_a, 1);
 	while (tab[0] != temp->content)
 		temp = ind(*stack_a, ++i);
 	if (temp->index > len / 2 && temp->index != len / 2 + 1)

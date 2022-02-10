@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:03:40 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/07 10:58:13 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/10 16:25:56 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -20,13 +20,14 @@ t_stack	*ind(t_stack *stack, int index)
 
 int	ft_stacklen(t_stack *stack)
 {
-	int		i;
+	int			i;
 	t_stack	*tmp;
 
-	i = 0;
-	if (stack)
-		tmp = stack->prev;
-	while (stack && ++i && stack != tmp)
+	if (!stack)
+		return (0);
+	i = 1;
+	tmp = stack->prev;
+	while (stack != tmp && i++)
 		stack = stack->next;
 	return (i);
 }

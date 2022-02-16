@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/07 13:15:33 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/16 14:22:44 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -74,19 +74,20 @@ void	ft_reverse(t_stack **stack, char *flag)
 
 void ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
 {
-	  if (!ft_strcmp(flag, "ss"))
+	  if (!ft_strcmp(flag, "ss\n"))
 	  {
 		    ft_swap(stack_a, "");
-		    ft_swap(stack_b, "ss");
+		    ft_swap(stack_b, "ss\n");
 	  }
-	  else if (!ft_strcmp(flag, "rr"))
+	  else if (!ft_strcmp(flag, "rr\n"))
 	  {
 		    ft_rotate(stack_a, "");
-		    ft_rotate(stack_b, "rr");
+		    ft_rotate(stack_b, "rr\n");
 	  }
-	  else if (!ft_strcmp(flag, "rrr"))
+	  else if (!ft_strcmp(flag, "rrr\n"))
 	  {
 		    ft_reverse(stack_a, "");
-		    ft_reverse(stack_b, "rrr");
+		    ft_reverse(stack_b, "rrr\n");
 	  }
 }
+

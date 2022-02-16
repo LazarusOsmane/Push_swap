@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:26:14 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/07 16:16:28 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/16 14:31:56 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -34,6 +34,8 @@ t_stack	*ft_stacklast(t_stack *stack, t_stack *temp)
 
 void	ft_delstack(t_stack *stack, t_stack *tmp)
 {
+      if (!stack || !tmp)
+		  return ;
 	if (stack != tmp)
 		ft_delstack(stack->next, tmp);
 	free(stack);

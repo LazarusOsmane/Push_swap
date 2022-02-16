@@ -6,13 +6,15 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 11:03:40 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/10 16:25:56 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/15 09:34:54 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 t_stack	*ind(t_stack *stack, int index)
 {
+	  if (!stack)
+		    return (NULL);
 	if (index > 1)
 		return(ind(stack->next, index - 1));
 	return (stack);

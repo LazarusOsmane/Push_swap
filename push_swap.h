@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:30:53 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/12 23:47:08 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/02/13 19:56:14 by lazarus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct b_arbre
 }	t_arbre;
 
 void		ft_push_swap(int ac, char **av);
+int		ft_big_sort(t_stack **a, t_stack **b);
 int		*ft_get_stack_info(int size, t_stack *stack, int flag);
 int		*ft_sort_in_tab(int *tab, int size);
 void		ft_little_sort(t_stack **stack_a, t_stack **stack_b, int size);
@@ -56,7 +57,10 @@ void		ft_reverse(t_stack **stack, char *flag);
 void		ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag);
 
 
-int		ft_get_majoran(int val, int len, t_stack *a);
+
+void		ft_print_stack(t_stack *stack_a, char flag);
+int		*ft_get_better_index(t_stack *a, t_stack *b, int *res);
+int		ft_get_majoran(int val, t_stack *s);
 t_stack	*ind(t_stack*stack, int index);
 t_stack	*ft_stacklast(t_stack *stack, t_stack *temp);
 t_stack	*ft_stack_new(int content, int index);

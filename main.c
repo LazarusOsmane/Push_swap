@@ -6,44 +6,33 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:40:33 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/16 14:35:09 by lazarus          ###   ########.fr       */
+/*   Updated: 2022/02/17 16:31:04 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_print_stack(t_stack *stack_a, char flag)
-{
-	int				i;
-	t_stack		*temp;
-
-	if (!stack_a)
-		  return ;
-	printf("\nstack %c: \n", flag);
-	i = 0;
-	temp = stack_a->prev;
-	while (stack_a != temp)
-	{
-		printf("val == %d    ind == %d\n", stack_a->content, ++i);
-		stack_a = stack_a->next;
-	}
-	printf("val == %d    ind == %d\n", stack_a->content, ++i);
-	printf("len de la stack == %d\n\n", ft_stacklen(stack_a));
-}
-
-
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	int			*tab;
+	t_stack	**stack;
 
-	stack_a = ft_init_stack(ac, av);
-	stack_b = NULL;
-	ft_print_stack(stack_a, 'a');
-	ft_big_sort(&stack_a, &stack_b);
-	ft_print_stack(stack_a, 'a');
-	ft_print_stack(stack_b, 'b');
-	if (stack_b)
-		  ft_delstack(stack_b, stack_b->prev);
-	ft_delstack(stack_a, stack_a->prev);
+	if (ft_check(ac - 1, av))
+		return (0);
+	stack = malloc(sizeof(t_stack *) * 2);
+	if (!stack)
+		return (0);
+	tab = malloc(sizeof(int) * 6);
+	if (!tab)
+		return (0);
+	stack[0] = ft_init_stack(ac, av);
+	stack[1] = NULL;
+	if (ac - 1 == 3)
+		ft_sort_tree(&stack[0]);
+	else if (ac - 1 == 5)
+		ft_sort_five(&stack[0], &stack[1]);
+	else if (ac - 1 > 5)
+		ft_big_sort(stack, ft_stacklen(stack[0]), tab);
+	ft_delstack(stack[1], NULL);
+	ft_delstack(stack[0], NULL);
 	return (0);
 }

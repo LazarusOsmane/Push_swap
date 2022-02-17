@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mediane.c                                       :+:      :+:    :+:   */
+/*   mediane.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 18:46:16 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/10 16:48:21 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/17 16:28:49 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -65,7 +65,7 @@ int	*ft_get_stack_info(int size, t_stack *stack, int flag)
 	while (--size >= 0)
 	{
 		stack = stack->prev;
-		tabs[size] = stack->content;
+		tabs[size] = stack->val;
 	}
 	ft_sort_in_tab(tabs, i);
 	tab[0] = tabs[0];

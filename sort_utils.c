@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_big_sort.c                                      :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:24:01 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/17 16:25:33 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/28 19:27:15 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -16,9 +16,9 @@ void	ft_pres_sort(t_stack **stack_a, t_stack **stack_b)
 	int	*tab;
 	int	end;
 
-	tab = ft_get_stack_info(ft_stacklen(*stack_a), *stack_a, 1);
+	tab = ft_get_stack_info((*stack_a)->prev->len, *stack_a, 1);
 	end = tab[2] + 1;
-	while ((*stack_a)->val != end)
+	while ((*stack_a) && (*stack_a)->val != end)
 	{
 		if ((*stack_a)->val == tab[2] && end > tab[2] && --end)
 			ft_rotate(stack_a, "ra\n");
@@ -66,8 +66,8 @@ int	*ft_get_better_index(t_stack *a, t_stack *b, int *res)
 		len[4] = ft_get_majoran(ind(b, i)->val, a);
 		if (i <= len[1] / 2)
 			len[2] = i - 1;
-		if (i > len[1] / 2)
-			len[2] += len[1] - (i - 1);
+		else if (i > len[1] / 2)
+			len[2] = len[1] - (i - 1);
 		if (len[4] <= len[0] / 2)
 			len[2] += len[4] - 1;
 		if (len[4] > len[0] / 2)
@@ -114,19 +114,19 @@ void	ft_push_min_nbr(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int			i;
 	int			*tab;
-	t_stack	*temp;
+	t_stack		*temp;
 
 	i = 0;
 	temp = *stack_a;
 	tab = ft_get_stack_info(5, *stack_a, 1);
 	while (tab[0] != temp->val)
 		temp = ind(*stack_a, ++i);
-	if (temp->index > len / 2 && temp->index != len / 2 + 1)
+	if (i > len / 2)
 		while ((*stack_a)->val != tab[0])
 			ft_reverse(stack_a, "rra\n");
-	else
+	else if (i <= len / 2)
 		while ((*stack_a)->val != tab[0])
 			ft_rotate(stack_a, "ra\n");
 	free(tab);
-	ft_push(stack_a, stack_b, "pa\n");
+	ft_push(stack_a, stack_b, "pb\n");
 }

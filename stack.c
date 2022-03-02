@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:26:14 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/17 16:16:20 by engooh           ###   ########.fr       */
+/*   Updated: 2022/02/28 18:36:28 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -52,6 +52,7 @@ void	ft_stack_add_front(t_stack **alst, t_stack *new)
 		new->next = new;
 		new->prev = new;
 		*alst = new;
+		(*alst)->len = 1;
 		return ;
 	}
 	temp = (*alst)->prev;
@@ -60,6 +61,7 @@ void	ft_stack_add_front(t_stack **alst, t_stack *new)
 	new->prev = temp;
 	temp->next = new;
 	*alst = new;
+	temp->len++;
 }
 
 t_stack	*ft_init_stack(int ac, char **av)
@@ -70,9 +72,10 @@ t_stack	*ft_init_stack(int ac, char **av)
 		return (NULL);
 	if (ft_check(ac, av))
 		return (NULL);
-	stack = ft_stack_new(ft_atoi(av[ac - 1]), ac);
 	--ac;
-	while (--ac > 0)
-		ft_stack_add_front(&stack, ft_stack_new(ft_atoi(av[ac]), ac));
+	stack = NULL;
+	ft_stack_add_front(&stack, ft_stack_new(ft_atoi(av[ac]), ac + 1));
+	while (--ac >= 0)
+		ft_stack_add_front(&stack, ft_stack_new(ft_atoi(av[ac]), ac + 1));
 	return (stack);
 }

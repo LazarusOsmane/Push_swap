@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/17 16:32:18 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/01 09:44:19 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -25,6 +25,7 @@ void	ft_push(t_stack **push, t_stack **recv, char *flag)
 		(*push)->prev->next = (*push)->next;
 		(*push)->next->prev = (*push)->prev;
 		*push = (*push)->next;
+		(*push)->prev->len--;
 	}
 	if (*recv)
 		ft_stack_add_front(recv, swap);
@@ -33,6 +34,7 @@ void	ft_push(t_stack **push, t_stack **recv, char *flag)
 		swap->next = swap;
 		swap->prev = swap;
 		*recv = swap;
+		(*recv)->len = 1;
 	}
 	ft_putstr_fd(flag, 1);
 }
@@ -58,8 +60,9 @@ void	ft_swap(t_stack **stack, char *flag)
 
 void	ft_rotate(t_stack **stack, char *flag)
 {
-	if (!(*stack)->next)
+	if ((*stack)->next == *stack)
 		return ;
+	(*stack)->len = (*stack)->prev->len;
 	*stack = (*stack)->next;
 	ft_putstr_fd(flag, 1);
 }
@@ -68,6 +71,7 @@ void	ft_reverse(t_stack **stack, char *flag)
 {
 	if (*stack == (*stack)->next)
 		return ;
+	(*stack)->prev->prev->len = (*stack)->prev->len;
 	*stack = (*stack)->prev;
 	ft_putstr_fd(flag, 1);
 }

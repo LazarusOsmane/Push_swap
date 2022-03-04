@@ -6,13 +6,15 @@
 /*   By: engooh <erickngooh.1@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 18:50:59 by engooh            #+#    #+#             */
-/*   Updated: 2021/11/26 18:57:08 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/04 17:05:44 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 int	ft_cntword(char const *s, char c, int n)
 {
+	if (!s)
+		return (0);
 	while (*s)
 	{
 		while (*s && *s == c)

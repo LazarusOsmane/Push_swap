@@ -6,17 +6,17 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/01 09:44:19 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/04 17:43:02 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_push(t_stack **push, t_stack **recv, char *flag)
+int ft_push(t_stack **push, t_stack **recv, char *flag)
 {
 	t_stack	*swap;
 
 	if (!(*push))
-		return ;
+		return (1);
 	swap = *push;
 	if (*push == (*push)->next)
 		*push = NULL;
@@ -37,14 +37,15 @@ void	ft_push(t_stack **push, t_stack **recv, char *flag)
 		(*recv)->len = 1;
 	}
 	ft_putstr_fd(flag, 1);
+	return (1);
 }
 
-void	ft_swap(t_stack **stack, char *flag)
+int ft_swap(t_stack **stack, char *flag)
 {
 	t_stack	*temp;
 
 	if (*stack == (*stack)->next)
-		return ;
+		return (1);
 	if (*stack == (*stack)->next->next)
 		return (ft_rotate(stack, flag));
 	temp = *stack;
@@ -56,27 +57,30 @@ void	ft_swap(t_stack **stack, char *flag)
 	temp->prev = *stack;
 	(*stack)->next = temp;
 	ft_putstr_fd(flag, 1);
+	return (1);
 }
 
-void	ft_rotate(t_stack **stack, char *flag)
+int ft_rotate(t_stack **stack, char *flag)
 {
 	if ((*stack)->next == *stack)
-		return ;
+		return (1);
 	(*stack)->len = (*stack)->prev->len;
 	*stack = (*stack)->next;
 	ft_putstr_fd(flag, 1);
+	return (1);
 }
 
-void	ft_reverse(t_stack **stack, char *flag)
+int ft_reverse(t_stack **stack, char *flag)
 {
 	if (*stack == (*stack)->next)
-		return ;
+		return (1);
 	(*stack)->prev->prev->len = (*stack)->prev->len;
 	*stack = (*stack)->prev;
 	ft_putstr_fd(flag, 1);
+	return (1);
 }
 
-void	ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
+int ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
 {
 	if (!ft_strcmp(flag, "ss\n"))
 	{
@@ -93,4 +97,5 @@ void	ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
 		ft_reverse(stack_a, "");
 		ft_reverse(stack_b, "rrr\n");
 	}
+	return (1);
 }

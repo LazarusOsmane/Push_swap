@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:24:01 by engooh            #+#    #+#             */
-/*   Updated: 2022/02/28 19:27:15 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/07 08:48:01 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -56,7 +56,7 @@ int	ft_get_majoran(int val, t_stack *s)
 int	*ft_get_better_index(t_stack *a, t_stack *b, int *res)
 {
 	int	i;
-	int	len[4];
+	int	len[5];
 
 	i = 0;
 	len[0] = ft_stacklen(a);

@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:57:59 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/04 20:58:08 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/07 09:58:30 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker.h"
@@ -36,6 +36,26 @@ int	ft_is_sort(int ac, char **av)
 	}
 	return (1);
 }
+
+
+int	ft_is_sort2(int ac, int *av)
+{
+	int	n;
+	int	nbr;
+
+	if (ac == 1)
+		return (0);
+	while (--ac > 0)
+	{
+		n = ac;
+		nbr = av[ac];
+		while (--n >= 0)
+			if (nbr < av[n])
+				return (0);
+	}
+	return (1);
+}
+
 
 int	ft_check(int ac, char **av)
 {
@@ -90,30 +110,54 @@ char *join(char *line, char *buf, int len)
 	return (new);
 }
 
-
-int	checker(int ac, char **av)
+char	*readstd(void)
 {
-	char		*rls;
-	
-	//if (ft_check(ac - 1, av + 1))
-		//return (0);
-	(void)rls;(void)ac;(void)av;
-	printf("ICI\n");
-	//read_output();
-	return (1);
+	int		i;
+	char	*std;
+	char	buf[1];
+
+	i = 1;
+	while (read(0, buf, 1))
+	{
+		std = join(std, buf, i);
+		if (*buf == '\n')
+			return (std);
+		i++;
+	}
+	return (NULL);
+}
+
+int	ft_free2(char *s)
+{
+	free(s);
+	return (0);
 }
 
 int	main(int ac, char **av)
-{
+{	
+	t_stack	*a;
+	t_stack	*b;	
+	int		*tab;
 	char	*std;
-	char	buf[1];
-	int		i;
 
-	(void)ac;(void)av;
-	i = 0;
-	std = NULL;
-	while (read(0, buf, 1))
-		std = join(std, buf, i++);
-	printf("%s", std);
-	return (0);
+	if (ft_check(ac - 1, av + 1) || ac <= 2)
+			return (0);
+	b = NULL;
+	std = readstd();
+	a = ft_init_stack(ac - 1, av + 1);
+	while (std)
+	{
+		if (!ft_rules(&a, &b, std) && !ft_free2(std))
+			return (write(1, "KO\n", 4));
+		free(std);
+		std = NULL;
+		std = readstd();
+	}
+	tab = ft_get_stack_info(ac - 1, a, 1);
+	if (!ft_is_sort2(ac - 1, tab))
+		write(1, "KO\n", 4);
+	free(tab);
+	ft_delstack(a, a->prev);
+	ft_delstack(b, b->prev);
+	return (write(1, "OK\n", 4));
 }

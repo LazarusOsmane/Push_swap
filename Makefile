@@ -1,6 +1,6 @@
 SRC = sort_utils.c stack.c mediane.c rules.c check.c main.c sort.c
 OBJ = ${SRC:.c=.o}
-SRC_BONUS = checker.c checker_utils.c rules.c mediane.c stack.c
+SRC_BONUS = checker_bonus.c checker_utils_bonus.c rules.c mediane.c stack.c check.c
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 CFLAG = -g3 -Wall -Werror -Wextra
 SFLAG = -g3 -Wall -Werror -Wextra -fsanitize=address 
@@ -27,6 +27,10 @@ clean:
 
 fclean:
 	rm *.o push_swap;
+
+bonus_flcean: 
+	rm *.o checker
+
 
 re: fclean all
 

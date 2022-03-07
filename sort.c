@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 09:55:37 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/04 19:49:29 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/07 15:59:58 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -38,7 +38,7 @@ void	ft_sort_tree(t_stack **stack)
 	free(tab);
 }
 
-int ft_sort_five(t_stack **stack_a, t_stack **stack_b)
+int	ft_sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	if (ft_stacklen(*stack_a) == 2)
 		return (ft_swap(stack_a, "sa\n"));
@@ -54,6 +54,8 @@ int ft_sort_five(t_stack **stack_a, t_stack **stack_b)
 
 int	ft_big_sort(t_stack **s, int len, int *tab)
 {
+	if (!s[0])
+		return (0);
 	ft_pres_sort(&s[0], &s[1]);
 	while (s[1])
 	{

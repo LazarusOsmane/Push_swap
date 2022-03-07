@@ -6,12 +6,12 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 12:19:58 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/04 17:43:02 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/07 16:04:04 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int ft_push(t_stack **push, t_stack **recv, char *flag)
+int	ft_push(t_stack **push, t_stack **recv, char *flag)
 {
 	t_stack	*swap;
 
@@ -40,7 +40,7 @@ int ft_push(t_stack **push, t_stack **recv, char *flag)
 	return (1);
 }
 
-int ft_swap(t_stack **stack, char *flag)
+int	ft_swap(t_stack **stack, char *flag)
 {
 	t_stack	*temp;
 
@@ -60,7 +60,7 @@ int ft_swap(t_stack **stack, char *flag)
 	return (1);
 }
 
-int ft_rotate(t_stack **stack, char *flag)
+int	ft_rotate(t_stack **stack, char *flag)
 {
 	if ((*stack)->next == *stack)
 		return (1);
@@ -70,7 +70,7 @@ int ft_rotate(t_stack **stack, char *flag)
 	return (1);
 }
 
-int ft_reverse(t_stack **stack, char *flag)
+int	ft_reverse(t_stack **stack, char *flag)
 {
 	if (*stack == (*stack)->next)
 		return (1);
@@ -80,7 +80,7 @@ int ft_reverse(t_stack **stack, char *flag)
 	return (1);
 }
 
-int ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
+int	ft_repeate(t_stack **stack_a, t_stack **stack_b, char *flag)
 {
 	if (!ft_strcmp(flag, "ss\n"))
 	{

@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:08:25 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/07 15:08:40 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/08 10:36:25 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker_bonus.h"
@@ -91,6 +91,8 @@ char	*readstd(void)
 
 int	ft_rules(t_stack **a, t_stack **b, char *rsl)
 {
+	if (!rsl)
+		return (0);
 	if (!ft_strcmp(rsl, "ra\n"))
 		return (ft_rotate(a, ""));
 	else if (!ft_strcmp(rsl, "rb\n"))

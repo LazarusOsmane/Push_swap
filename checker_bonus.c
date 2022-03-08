@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:07:57 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/07 15:23:29 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/08 13:05:38 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "checker_bonus.h"
@@ -47,14 +47,14 @@ int	checker(int ac, char **av)
 	a = ft_init_stack(ac, av);
 	while (std)
 	{
-		if (!ft_rules(&a, &b, std))
+		if (std && !ft_rules(&a, &b, std))
 			return (ft_free2(a, b, std, 1));
 		free(std);
 		std = NULL;
 		std = readstd();
 	}
 	tab = get_tab(a, ac);
-	if (!ft_is_sort2(ac - 1, tab))
+	if (!ft_is_sort2(ac, tab))
 		return (write(1, "KO\n", 4));
 	free(tab);
 	return (write(1, "OK\n", 4));
@@ -65,6 +65,8 @@ int	main(int ac, char **av)
 	int		len;
 	char	**tab;
 
+	if (ac == 1)
+		return (0);
 	if (ac <= 2)
 	{
 		tab = ft_split(av[1], ' ');

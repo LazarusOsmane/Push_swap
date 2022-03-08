@@ -6,7 +6,7 @@
 /*   By: engooh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:40:33 by engooh            #+#    #+#             */
-/*   Updated: 2022/03/07 16:05:25 by engooh           ###   ########.fr       */
+/*   Updated: 2022/03/08 10:24:31 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -24,7 +24,7 @@ int	push_swap(int ac, char **av)
 	int			*tab;
 	t_stack		**stack;
 
-	if (ft_check(ac, av) && printf("ICI"))
+	if (ft_check(ac, av))
 		return (0);
 	stack = malloc(sizeof(t_stack *) * 2);
 	if (!stack)

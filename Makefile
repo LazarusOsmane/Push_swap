@@ -10,9 +10,11 @@ LIBFT = ./libft/libft.a
 all: push_swap
 
 push_swap: $(OBJ)
+	cd libft/ && make
 	$(CC) $(CFLAG) $^ $(LIBFT) -o $@
 
 bonus: $(OBJ_BONUS)
+	cd libft/ && make
 	$(CC) $(CFLAG) $^ $(LIBFT) -o checker
 
 $(OBJ_BONUS): $(SRC_BONUS)
@@ -21,15 +23,20 @@ $(OBJ_BONUS): $(SRC_BONUS)
 %.o: %.c
 	$(CC) $(CFLAG) -c $^ 
 
-
 clean: 
-	rm *.o
+	cd libft/ && make clean
+	rm -f $(OBJ)
 
-fclean:
-	rm *.o push_swap;
+fclean: clean
+	rm -f push_swap
 
-bonus_flcean: 
-	rm *.o checker
+bonus_clean:
+	cd libft/ && make clean
+	rm -f $(OBJ_BONUS)
+
+bonus_flcean:
+	cd libft/ && make fclean
+	rm $(OBJ_BONUS) checker
 
 
 re: fclean all
